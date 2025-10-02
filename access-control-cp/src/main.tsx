@@ -4,6 +4,7 @@ import App from './App'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Error from './routes/Error'
 import Login from './routes/Login'
+import Cadastro from './routes/Cadastro'
 
 
 const router = createBrowserRouter([
