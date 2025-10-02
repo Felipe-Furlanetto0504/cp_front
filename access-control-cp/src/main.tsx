@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Error from './routes/Error'
 import Login from './routes/Login'
 import Cadastro from './routes/Cadastro'
+import "./global.css";
 
 
 const router = createBrowserRouter([
