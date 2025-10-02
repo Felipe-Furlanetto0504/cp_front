@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import App from './App'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Error from './routes/Error'
+import Login from './routes/Login'
 
 
 const router = createBrowserRouter([
@@ -11,7 +12,8 @@ const router = createBrowserRouter([
     element: <App />,
     errorElement: <Error />,
     children: [
-      
+      {path: "/", element: <Login/> },
+      {path: "/cadastro", element: <Cadastro/> }
     ],
   },
 ]);
