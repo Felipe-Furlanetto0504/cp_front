@@ -28,8 +28,22 @@ export default function Login(){
 
 
     return(
-        <div>
-            <h1>Página de Login</h1>
-        </div>
+        <section>
+            <div>
+                <h1>Login</h1>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <label>Email:</label>
+                    <input type="email" placeholder="SeuEmail@.com" 
+                    {...register("email",{required: "o email é obrigatório"})}/>
+
+                    {errors.email &&(
+                        <span>
+                            {errors.email.message}
+                        </span>
+                    )}
+
+                </form>
+            </div>
+        </section>
     );
 }
