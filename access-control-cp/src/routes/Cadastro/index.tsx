@@ -28,8 +28,22 @@ export default function Cadastro(){
     };
 
     return(
+      <section>
         <div>
-            <h1>Página de Cadastro</h1>
+            <h1>Cadastro de Usuário</h1>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <label>Email:</label>
+                <input type="email" placeholder="SeuEmail@.com" 
+                {...register("email",{required: "o email é obrigatório"})}/>
+
+                {errors.email &&(
+                    <span>
+                        {errors.email.message}
+                    </span>
+                )}
+
+            </form>
         </div>
+      </section>
     );
 }
