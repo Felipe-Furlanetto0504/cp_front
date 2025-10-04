@@ -52,6 +52,17 @@ export default function Cadastro(){
                     </span>
                 )}
 
+                <label>Nome De Usuario</label>
+                <input type="text" placeholder="SeuNomeDeUsuario" 
+                {...register("nomeUsuario",{required: "o nome de usuário é obrigatório"})}/>
+
+                {errors.nomeUsuario &&(
+                    <span>
+                        {errors.nomeUsuario.message}
+                    </span>
+                )}
+
+
 
 
 
