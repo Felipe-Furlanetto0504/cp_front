@@ -42,6 +42,19 @@ export default function Login(){
                         </span>
                     )}
 
+                    <label>Nome de usuario:</label>
+                    <input type="text" placeholder="SeuNomeDeUsuario" 
+                    {...register("nomeUsuario",{required: "o nome de usuário é obrigatório"})}/>
+
+                    {errors.nomeUsuario &&(
+                        <span>
+                            {errors.nomeUsuario.message}
+                        </span>
+                    )}
+
+                    
+
+
                 </form>
             </div>
         </section>
