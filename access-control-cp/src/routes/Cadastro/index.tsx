@@ -62,11 +62,7 @@ export default function Cadastro(){
                     </span>
                 )}
 
-
-
-
-
-
+                <button type="submit">Cadastrar</button>
 
             </form>
         </div>
