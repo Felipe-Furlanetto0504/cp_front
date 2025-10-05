@@ -1,17 +1,8 @@
 {
   "usuario": [
-    {
-      "id": "6719",
-      "email": "jo@email.com",
-      "nome": "rr",
-      "nomeDeUsuario": "ffffffffff"
-    }
+  
   ],
   "login": [
-    {
-      "id": "dbec",
-      "email": "fff@gmail.com",
-      "nomeUsuario": "ola"
-    }
+ 
   ]
 }

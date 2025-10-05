@@ -68,7 +68,9 @@ export default function Login() {
               type="email"
               placeholder="SeuEmail@.com"
               {...register("email", { required: "o email é obrigatório" })}
-              className="mt-1 w-full p-2 border border-gray-300  placeholder-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600 "
+              className="mt-1 w-full p-2 border border-gray-300 
+  bg-white text-gray-900 placeholder-gray-500 
+  rounded-md focus:outline-none focus:ring-2 focus:ring-green-600"
             />
 
             {errors.email && (
@@ -88,7 +90,9 @@ export default function Login() {
               {...register("nomeUsuario", {
                 required: "o nome de usuário é obrigatório",
               })}
-              className="mt-1 w-full p-2 border border-gray-300  placeholder-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600 "
+              className="mt-1 w-full p-2 border border-gray-300 
+  bg-white text-gray-900 placeholder-gray-500 
+  rounded-md focus:outline-none focus:ring-2 focus:ring-green-600"
             />
 
             {errors.nomeUsuario && (
