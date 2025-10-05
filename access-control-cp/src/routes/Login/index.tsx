@@ -28,10 +28,10 @@ export default function Login(){
 
 
     return(
-        <section  className="bg-[#2a1d9b] h-127 w-340">  
+        <section  className="bg-[#90ff95] h-127 w-340">  
             <div  className="max-w-md mx-auto mt-12 p-6 border border-gray-300 rounded-xl shadow-md bg-white">
                 <h1  className="text-2xl font-bold text-center mb-6">Login</h1>
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form  className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
                     <label  className="mt-4 font-medium">Email:</label>
                     <input type="email" placeholder="SeuEmail@.com" 
                     {...register("email",{required: "o email é obrigatório"})}  className="mt-2 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"/>
@@ -52,7 +52,7 @@ export default function Login(){
                         </span>
                     )}
 
-                    <button type="submit"  className="mt-6 p-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 transition-colors">Login</button>
+                    <button type="submit"  className="mt-6 p-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition-colors">Login</button>
 
                 </form>
             </div>

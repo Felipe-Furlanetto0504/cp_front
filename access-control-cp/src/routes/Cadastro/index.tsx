@@ -28,7 +28,7 @@ export default function Cadastro(){
     };
 
     return(
-      <section className="bg-[#5d68c9] h-127 w-340">
+      <section className="bg-[#90ff95] h-127 w-340">
         <div className="max-w-md mx-auto mt-12 p-6 border border-gray-300 rounded-xl shadow-md bg-white">
             <h1 className="text-2xl font-bold text-center mb-6">Cadastro de Usuário</h1>
             <form  className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
@@ -63,7 +63,7 @@ export default function Cadastro(){
                     </span>
                 )}
 
-                <button type="submit" className="mt-6 p-2 bg-green-500 text-white rounded-md hover:bg-grenn-600 transition-colors" >Cadastrar</button>
+                <button type="submit" className="mt-6 p-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition-colors" >Cadastrar</button>
 
             </form>
         </div>

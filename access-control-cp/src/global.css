@@ -3,3 +3,30 @@
 :root {
     scroll-behavior: smooth;
 }
+
+.container {
+  @apply w-[100vw] h-[100vh] flex flex-col justify-between;
+
+  & header {
+    @apply bg-[#146e1b] h-[13vh] w-[100vw];
+
+    & a:hover {
+      @apply bg-[#158f1f];
+    }
+  }
+
+  & main {
+    @apply text-white h-[80vh] w-[100vw] overflow-auto;
+  }
+
+  & footer {
+    @apply bg-[#087516] text-white h-[13vh] w-[100vw] flex items-center justify-center
+           px-6 py-4 text-center font-bold;
+  }
+
+  .tabela {
+    @apply bg-[#0ca526] border-2 w-[90%] mx-auto border-collapse; 
+
+    
+  }
+}
