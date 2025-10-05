@@ -28,26 +28,26 @@ export default function Login(){
 
 
     return(
-        <section>
-            <div>
-                <h1>Login</h1>
+        <section  className="bg-[#2a1d9b] h-127 w-340">  
+            <div  className="max-w-md mx-auto mt-12 p-6 border border-gray-300 rounded-xl shadow-md bg-white">
+                <h1  className="text-2xl font-bold text-center mb-6">Login</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <label>Email:</label>
+                    <label  className="mt-4 font-medium">Email:</label>
                     <input type="email" placeholder="SeuEmail@.com" 
-                    {...register("email",{required: "o email é obrigatório"})}/>
+                    {...register("email",{required: "o email é obrigatório"})}  className="mt-2 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"/>
 
                     {errors.email &&(
-                        <span>
+                        <span  className="text-red-600 text-sm mt-1">
                             {errors.email.message}
                         </span>
                     )}
 
-                    <label>Nome de usuario:</label>
+                    <label  className="mt-4 font-medium">Nome de usuario:</label>
                     <input type="text" placeholder="SeuNomeDeUsuario" 
-                    {...register("nomeUsuario",{required: "o nome de usuário é obrigatório"})}/>
+                    {...register("nomeUsuario",{required: "o nome de usuário é obrigatório"})} className="mt-2 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"/>
 
                     {errors.nomeUsuario &&(
-                        <span>
+                        <span  className="text-red-600 text-sm mt-1">
                             {errors.nomeUsuario.message}
                         </span>
                     )}
