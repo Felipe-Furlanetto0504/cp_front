@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import type { Cadastro } from "../../types/cadastro";
 import { useEffect, useState } from "react";
+import type { Login } from "../../types/login";
 
 export default function Cadastro() {
   useEffect(() => {
@@ -31,6 +32,7 @@ export default function Cadastro() {
   };
 
   const [cadastros, setCadastros] = useState<Cadastro[]>([]);
+  const [login, setLogin] = useState<Login[]>([]);
 
   useEffect(() => {
     const fetchCadastros = async () => {
@@ -41,15 +43,26 @@ export default function Cadastro() {
     fetchCadastros();
   }, []);
 
+  useEffect(() => {
+    const fetchLogin = async () => {
+      const response = await fetch("http://localhost:3000/login");
+      const data: Login[] = await response.json();
+      setLogin(data);
+    };
+    fetchLogin();
+  }, []);
+
   return (
     <main className=" w-100 bg-[#90ff95] flex flex-col items-center py-8">
       <section className="w-100  bg-white rounded-2xl shadow-lg p-6 border border-gray-200">
-          <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
-            Cadastro de Usuário
-          </h1>
-          <form  className="flex flex-col space-y-4" onSubmit={handleSubmit(onSubmit)}>
-
-            <div>
+        <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
+          Cadastro de Usuário
+        </h1>
+        <form
+          className="flex flex-col space-y-4"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <div>
             <label className="block font-medium text-gray-700">Email:</label>
             <input
               type="email"
@@ -63,15 +76,15 @@ export default function Cadastro() {
                 {errors.email.message}
               </span>
             )}
-            </div>
+          </div>
 
-            <div>
+          <div>
             <label className="block font-medium text-gray-700">Nome:</label>
             <input
               type="text"
               placeholder="SeuNome"
               {...register("nome", { required: "o nome é obrigatório" })}
-               className="mt-1 w-full p-2 border  placeholder-gray-500 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600"
+              className="mt-1 w-full p-2 border  placeholder-gray-500 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600"
             />
 
             {errors.nome && (
@@ -79,17 +92,19 @@ export default function Cadastro() {
                 {errors.nome.message}
               </span>
             )}
-            </div>
+          </div>
 
-            <div>
-            <label className="block font-medium text-gray-700">Nome De Usuario</label>
+          <div>
+            <label className="block font-medium text-gray-700">
+              Nome De Usuario
+            </label>
             <input
               type="text"
-              placeholder="SeuNomeDeUsuario" 
+              placeholder="SeuNomeDeUsuario"
               {...register("nomeDeUsuario", {
                 required: "o nome de usuário é obrigatório",
               })}
-                className="mt-1 w-full p-2 border border-gray-300 rounded-md 
+              className="mt-1 w-full p-2 border border-gray-300 rounded-md 
              bg-white text-gray-900 placeholder-gray-500
              focus:outline-none focus:ring-2 focus:ring-green-600"
             />
@@ -99,16 +114,15 @@ export default function Cadastro() {
                 {errors.nomeDeUsuario.message}
               </span>
             )}
-            </div>
+          </div>
 
-            <button
-              type="submit"
-              className="mt-4 w-full p-2 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 transition-colors"
-            >
-              Cadastrar
-            </button>
-          </form>
-        
+          <button
+            type="submit"
+            className="mt-4 w-full p-2 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 transition-colors"
+          >
+            Cadastrar
+          </button>
+        </form>
       </section>
 
       <section className="mt-10 w-11/12 max-w-5xl">
@@ -122,12 +136,24 @@ export default function Cadastro() {
             </tr>
           </thead>
           <tbody className="bg-white text-gray-700">
+            {login.map((login, id) => (
+              <tr
+                key={id}
+                className="even:bg-gray-100 hover:bg-green-50 transition-colors"
+              >
+                <td className="py-2 px-4">{login.id}</td>
+                <td className="py-2 px-4">{login.email}</td>
+                <td className="py-2 px-4">{login.nome}</td>
+                <td className="py-2 px-4">{login.nomeUsuario}</td>
+              </tr>
+            ))}
+
             {cadastros.map((cadastro, id) => (
               <tr
                 key={id}
                 className="even:bg-gray-100 hover:bg-green-50 transition-colors"
               >
-                <td className="py-2 px-4"></td>
+                <td className="py-2 px-4">{cadastro.id}</td>
                 <td className="py-2 px-4">{cadastro.email}</td>
                 <td className="py-2 px-4">{cadastro.nome}</td>
                 <td className="py-2 px-4">{cadastro.nomeDeUsuario}</td>
@@ -136,9 +162,7 @@ export default function Cadastro() {
           </tbody>
           <tfoot className="bg-green-100 text-gray-800 font-medium">
             <tr>
-              <td colSpan={4} className="py-2 px-4 text-right">
-                total de cadastros: {cadastros.length}
-              </td>
+              <td colSpan={4} className="py-2 px-4 text-right">total de cadastros: {cadastros.length}</td>
             </tr>
           </tfoot>
         </table>
