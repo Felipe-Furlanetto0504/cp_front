@@ -63,7 +63,7 @@ export default function Cadastro(){
                     </span>
                 )}
 
-                <button type="submit">Cadastrar</button>
+                <button type="submit" className="mt-6 p-2 bg-green-500 text-white rounded-md hover:bg-grenn-600 transition-colors" >Cadastrar</button>
 
             </form>
         </div>
