@@ -1,5 +1,5 @@
 export type Cadastro = {
  email: string;
- nomeUsuario: string;
+ nomeDeUsuario: string;
  nome: string;
 };

@@ -1,7 +1,13 @@
 import { useForm } from "react-hook-form";
 import type { Login } from "../../types/login";
+import { useEffect } from "react";
 
 export default function Login(){
+
+    useEffect(()=>{
+        document.title = "Login";
+    },[])
+
     const{
         register,
         handleSubmit,
@@ -34,7 +40,7 @@ export default function Login(){
                 <form  className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
                     <label  className="mt-4 font-medium">Email:</label>
                     <input type="email" placeholder="SeuEmail@.com" 
-                    {...register("email",{required: "o email é obrigatório"})}  className="mt-2 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"/>
+                    {...register("email",{required: "o email é obrigatório"})}  className="mt-2 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"/>
 
                     {errors.email &&(
                         <span  className="text-red-600 text-sm mt-1">
@@ -44,7 +50,7 @@ export default function Login(){
 
                     <label  className="mt-4 font-medium">Nome de usuario:</label>
                     <input type="text" placeholder="SeuNomeDeUsuario" 
-                    {...register("nomeUsuario",{required: "o nome de usuário é obrigatório"})} className="mt-2 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"/>
+                    {...register("nomeUsuario",{required: "o nome de usuário é obrigatório"})} className="mt-2 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"/>
 
                     {errors.nomeUsuario &&(
                         <span  className="text-red-600 text-sm mt-1">
