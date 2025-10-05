@@ -52,7 +52,7 @@ export default function Login(){
                         </span>
                     )}
 
-                    <button type="submit">Login</button>
+                    <button type="submit"  className="mt-6 p-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 transition-colors">Login</button>
 
                 </form>
             </div>
