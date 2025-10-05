@@ -162,7 +162,7 @@ export default function Cadastro() {
           </tbody>
           <tfoot className="bg-green-100 text-gray-800 font-medium">
             <tr>
-              <td colSpan={4} className="py-2 px-4 text-right">total de cadastros: {cadastros.length}</td>
+              <td colSpan={4} className="py-2 px-4 text-right">total de cadastros e logins {cadastros.length + login.length}</td>
             </tr>
           </tfoot>
         </table>
