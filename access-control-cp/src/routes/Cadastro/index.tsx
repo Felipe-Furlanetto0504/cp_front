@@ -53,12 +53,12 @@ export default function Cadastro(){
                     </span>
                 )}
 
-                <label>Nome De Usuario</label>
+                <label className="mt-4 font-medium" >Nome De Usuario</label>
                 <input type="text" placeholder="SeuNomeDeUsuario" 
-                {...register("nomeUsuario",{required: "o nome de usuário é obrigatório"})}/>
+                {...register("nomeUsuario",{required: "o nome de usuário é obrigatório"})} className="mt-2 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"/>
 
                 {errors.nomeUsuario &&(
-                    <span>
+                    <span className="text-red-600 text-sm mt-1">
                         {errors.nomeUsuario.message}
                     </span>
                 )}
