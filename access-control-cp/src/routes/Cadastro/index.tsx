@@ -2,115 +2,147 @@ import { useForm } from "react-hook-form";
 import type { Cadastro } from "../../types/cadastro";
 import { useEffect, useState } from "react";
 
-export default function Cadastro(){
+export default function Cadastro() {
+  useEffect(() => {
+    document.title = "Cadastro";
+  }, []);
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Cadastro>();
 
-    useEffect(()=>{
-        document.title = "Cadastro";
-    },[])
+  const onSubmit = async (data: Cadastro) => {
+    try {
+      const response = await fetch("http://localhost:3000/usuario", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-    const{
-        register,
-        handleSubmit,
-       formState:{errors},
-    } = useForm<Cadastro>();
+      if (!response.ok) throw new Error("Erro ao cadastrar usuário");
+    } catch (error) {
+      console.error(error);
+      alert("Erro ao cadastrar usuário");
+    }
+  };
 
-    const onSubmit = async (data: Cadastro) => {
-        try{
-            const response = await fetch ("http://localhost:3000/usuario",{
-                method: "POST",
-                headers:{
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data),
-            });
+  const [cadastros, setCadastros] = useState<Cadastro[]>([]);
 
-            if(!response.ok) throw new Error("Erro ao cadastrar usuário");
-
-        } catch(error){
-            console.error(error);
-            alert("Erro ao cadastrar usuário");
-        }
+  useEffect(() => {
+    const fetchCadastros = async () => {
+      const response = await fetch("http://localhost:3000/usuario");
+      const data: Cadastro[] = await response.json();
+      setCadastros(data);
     };
+    fetchCadastros();
+  }, []);
 
-    const [cadastros, setCadastros] = useState<Cadastro[]>([]);
+  return (
+    <main className=" w-100 bg-[#90ff95] flex flex-col items-center py-8">
+      <section className="w-100  bg-white rounded-2xl shadow-lg p-6 border border-gray-200">
+          <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
+            Cadastro de Usuário
+          </h1>
+          <form  className="flex flex-col space-y-4" onSubmit={handleSubmit(onSubmit)}>
 
-    useEffect(()=>{
-        const fetchCadastros = async () => {
-            const response = await fetch("http://localhost:3000/usuario");
-            const data: Cadastro[] = await response.json();
-            setCadastros(data);
-        }
-        fetchCadastros();
+            <div>
+            <label className="block font-medium text-gray-700">Email:</label>
+            <input
+              type="email"
+              placeholder="SeuEmail@.com"
+              {...register("email", { required: "o email é obrigatório" })}
+              className="mt-1 w-full p-2 border border-gray-300  placeholder-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600 "
+            />
 
-    },[]);
+            {errors.email && (
+              <span className="text-red-600 text-sm">
+                {errors.email.message}
+              </span>
+            )}
+            </div>
 
+            <div>
+            <label className="block font-medium text-gray-700">Nome:</label>
+            <input
+              type="text"
+              placeholder="SeuNome"
+              {...register("nome", { required: "o nome é obrigatório" })}
+               className="mt-1 w-full p-2 border  placeholder-gray-500 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600"
+            />
 
-    return(
-    <main>
-      <section className="bg-[#90ff95] h-127 w-340">
-        <div className="max-w-md mx-auto mt-5 p-6 border border-gray-300 rounded-xl shadow-md bg-white">
-            <h1 className="text-2xl font-bold text-center mb-6">Cadastro de Usuário</h1>
-            <form  className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
-                <label className="mt-4 font-medium" >Email:</label>
-                <input type="email" placeholder="SeuEmail@.com" 
-                {...register("email",{required: "o email é obrigatório"})} className="mt-2 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"/>
+            {errors.nome && (
+              <span className="text-red-600 text-sm">
+                {errors.nome.message}
+              </span>
+            )}
+            </div>
 
+            <div>
+            <label className="block font-medium text-gray-700">Nome De Usuario</label>
+            <input
+              type="text"
+              placeholder="SeuNomeDeUsuario" 
+              {...register("nomeDeUsuario", {
+                required: "o nome de usuário é obrigatório",
+              })}
+                className="mt-1 w-full p-2 border border-gray-300 rounded-md 
+             bg-white text-gray-900 placeholder-gray-500
+             focus:outline-none focus:ring-2 focus:ring-green-600"
+            />
 
-                {errors.email &&(
-                    <span className="text-red-600 text-sm mt-1" >
-                        {errors.email.message}
-                    </span>
-                )}
+            {errors.nomeDeUsuario && (
+              <span className="text-red-600 text-sm">
+                {errors.nomeDeUsuario.message}
+              </span>
+            )}
+            </div>
 
-                <label className="mt-4 font-medium" >Nome:</label>
-                <input type="text" placeholder="SeuNome" 
-                {...register("nome",{required: "o nome é obrigatório"})} className="mt-2 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"/>
-
-                {errors.nome &&(
-                    <span className="text-red-600 text-sm mt-1" >
-                        {errors.nome.message}
-                    </span>
-                )}
-
-                <label className="mt-4 font-medium" >Nome De Usuario</label>
-                <input type="text" placeholder="SeuNomeDeUsuario" 
-                {...register("nomeDeUsuario",{required: "o nome de usuário é obrigatório"})} className="mt-2 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"/>
-
-                {errors.nomeDeUsuario &&(
-                    <span className="text-red-600 text-sm mt-1">
-                        {errors.nomeDeUsuario.message}
-                    </span>
-                )}
-                <button type="submit" className="mt-6 p-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition-colors" >Cadastrar</button>
-            </form>
-        </div>
+            <button
+              type="submit"
+              className="mt-4 w-full p-2 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 transition-colors"
+            >
+              Cadastrar
+            </button>
+          </form>
+        
       </section>
 
-      <table className="tabela">
-        <thead>
-          <tr>
-            <th>id</th>
-            <th>Email</th>
-            <th>Nome</th>
-            <th>Nome De Usuario</th>
-          </tr>
-        </thead>
-                <tbody>
-                    {cadastros.map((cadastro,id)=>(
-                        <tr key={id}>
-                            <td>{cadastro.email}</td>
-                            <td>{cadastro.nome}</td>
-                            <td>{cadastro.nomeDeUsuario}</td>
-                        </tr>
-                    ))}
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colSpan={3}>total de cadastros: {cadastros.length}</td>
-                    </tr>
-                </tfoot>
-      </table>
+      <section className="mt-10 w-11/12 max-w-5xl">
+        <table className="w-full border-collapse border border-green-700 rounded-lg overflow-hidden shadow-md">
+          <thead className="bg-green-700 text-white">
+            <tr>
+              <th className="py-3 px-4 text-left">id</th>
+              <th className="py-3 px-4 text-left">Email</th>
+              <th className="py-3 px-4 text-left">Nome</th>
+              <th className="py-3 px-4 text-left">Nome De Usuario</th>
+            </tr>
+          </thead>
+          <tbody className="bg-white text-gray-700">
+            {cadastros.map((cadastro, id) => (
+              <tr
+                key={id}
+                className="even:bg-gray-100 hover:bg-green-50 transition-colors"
+              >
+                <td className="py-2 px-4"></td>
+                <td className="py-2 px-4">{cadastro.email}</td>
+                <td className="py-2 px-4">{cadastro.nome}</td>
+                <td className="py-2 px-4">{cadastro.nomeDeUsuario}</td>
+              </tr>
+            ))}
+          </tbody>
+          <tfoot className="bg-green-100 text-gray-800 font-medium">
+            <tr>
+              <td colSpan={4} className="py-2 px-4 text-right">
+                total de cadastros: {cadastros.length}
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </section>
     </main>
-    );
+  );
 }
