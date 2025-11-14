@@ -1,8 +1,4 @@
-Integrantes: 
-Felipe Furlanetto RM: 562766, 
-João Victor Caetano RM: 562074 e 
-João Victor Bueno RM: 564115
-Turma: 1TDSPF
+Esse Projeto teve como objetivo, melhorar nossos conhecimentos ao manipular o login e o cadastro de algun usuário.
 
 Descrição:
 Como pode observar nesse projeto quando realizamos login e cadastro as informações vão para a tabela,
